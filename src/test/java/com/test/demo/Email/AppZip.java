@@ -14,17 +14,25 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+/**
+ * AppZip class basically contains methods that helps in generating the file
+ * list and zippping of the file on the specified directory.
+ * 
+ * @author Jaidip Ghosh,Shantam Khare
+ * @version 1.3s
+ *
+ */
 public class AppZip {
 	List<String> fileList;
-	public static final String FINAL_REPORT_LOCATION = "\\\\MO-8DF1B838C\\Email_Zip"; 
-	
-	
+	public static final String FINAL_REPORT_LOCATION = "\\\\MO-8DF1B838C\\Email_Zip";
+
 	private static final String OUTPUT_ZIP_FILE = "C:\\Email_Zip\\Reports.zip";
 	public static final String SOURCE_FOLDERSDEMO = "C:\\ExtentReportsOutput\\DEMO";
 	public static FileOutputStream fos = null;
 	public static ZipOutputStream zos = null;
 	public static String MessageBody = "";
 	public static String FolderName = "";
+
 	/**
 	 * AppZip is the constructor for initializing the filelist which of List
 	 * type.
@@ -76,18 +84,18 @@ public class AppZip {
 				System.out.println("File Added : " + file);
 				ZipEntry ze = new ZipEntry(file);
 				zos.putNextEntry(ze);
-				if (file.contains(SOURCE_FOLDER.substring(SOURCE_FOLDER.lastIndexOf("\\") + 1)+"LogFile.txt")) {
+				if (file.contains(SOURCE_FOLDER.substring(SOURCE_FOLDER.lastIndexOf("\\") + 1) + "LogFile.txt")) {
 					Path path = Paths.get(SOURCE_FOLDER + File.separator + file);
 					Charset charset = Charset.forName("UTF-8");
 					BufferedReader reader = Files.newBufferedReader(path, charset);
 					String line = "";
-					if(!MessageBody.isEmpty()){
-						MessageBody +="<br/><br/>";
+					if (!MessageBody.isEmpty()) {
+						MessageBody += "<br/><br/>";
 					}
-		            while ((line = reader.readLine()) != null) {
-		                MessageBody +=line;
-		            }
-		            MessageBody +=FolderName;
+					while ((line = reader.readLine()) != null) {
+						MessageBody += line;
+					}
+					MessageBody += FolderName;
 				}
 				FileInputStream in = new FileInputStream(SOURCE_FOLDER + File.separator + file);
 				int len;
@@ -144,10 +152,10 @@ public class AppZip {
 					recentTime = file.lastModified();
 				}
 			}
-			String systemName = FINAL_REPORT_LOCATION.substring(0,FINAL_REPORT_LOCATION.lastIndexOf("\\"));
-			String fldrName = SOURCE_FOLDER.substring(SOURCE_FOLDER.indexOf("\\")+1);
-			systemName +="\\"+fldrName+"\\"+recent.getName();
-			FolderName = "The File shortcut is "+"<a href=\""+systemName+"\">"+systemName+"</a>";
+			String systemName = FINAL_REPORT_LOCATION.substring(0, FINAL_REPORT_LOCATION.lastIndexOf("\\"));
+			String fldrName = SOURCE_FOLDER.substring(SOURCE_FOLDER.indexOf("\\") + 1);
+			systemName += "\\" + fldrName + "\\" + recent.getName();
+			FolderName = "The File shortcut is " + "<a href=\"" + systemName + "\">" + systemName + "</a>";
 			generateFileList(recent, SOURCE_FOLDER);
 		}
 

@@ -1,7 +1,6 @@
 package com.test.demo.Email;
 
 import java.util.Properties;
-
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -10,6 +9,17 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+
+/**
+ * SendMail class is basically used for sending out mail to the specified
+ * recipients, and the body of the mail basically contains the details of the
+ * report of the test runs and a zip file is also attached along with mail that
+ * is also being sent.
+ * 
+ * @author Jaidip Ghosh,Shantam Khare
+ * @version 1.5
+ *
+ */
 
 public class SendMail {
 	public static void main(String args[]) throws MessagingException {
@@ -75,6 +85,14 @@ public class SendMail {
 		System.out.println("Message Sent Successfully");
 	}
 
+	/**
+	 * SMTPAuthenticator class basically sends an instance of
+	 * PasswordAuthentication that is going to be needed for authentication
+	 * purpose while sending the mail.
+	 * 
+	 * @author Jaidip Ghosh
+	 *
+	 */
 	private class SMTPAuthenticator extends javax.mail.Authenticator {
 		public PasswordAuthentication getPasswordAuthentication() {
 
