@@ -66,7 +66,7 @@ public class SendMail {
 						+ AppZip.SOURCE_FOLDERSDEMO + "<br/><p>The Report is in this location :- <a href="
 						+ AppZip.FINAL_REPORT_LOCATION + ">" + AppZip.FINAL_REPORT_LOCATION + "</a>. The File name is "
 						+ filename + ".</p><br/><br/><h3>Summary of Reports:-</h3>" + AppZip.MessageBody
-						+ "<br/><br/>Regards,<br/>Auto-Bot",
+						+ "<br/><br/>Regards,<br/>Auto-Bot<br/><p>* It is for the test case when the test case stopped abruptly",
 				"text/html");
 		Multipart mpart = new MimeMultipart();
 		mpart.addBodyPart(messageBodyPart);
