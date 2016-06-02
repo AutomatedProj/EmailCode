@@ -1,5 +1,8 @@
 package com.test.demo.Email;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -49,7 +52,11 @@ public class SendMail {
 		}
 		msg.setRecipients(Message.RecipientType.TO, addressTo);
 		msg.addHeader("MyHeaderName", "myHeaderValue");
-		msg.setSubject("Reports for the most recent run of Automation Scripts");
+		Calendar calendar = Calendar.getInstance();
+		Date dat = calendar.getTime();
+		SimpleDateFormat formatter = new SimpleDateFormat("d MMM yyyy");
+		String date = formatter.format(dat);
+		msg.setSubject("Reports for "+date+", of Automation Scripts");
 
 		String filepath = AppZip.start();
 		String filename = filepath.substring(filepath.lastIndexOf("\\") + 1);

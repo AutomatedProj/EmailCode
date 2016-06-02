@@ -84,7 +84,7 @@ public class AppZip {
 				System.out.println("File Added : " + file);
 				ZipEntry ze = new ZipEntry(file);
 				zos.putNextEntry(ze);
-				if (file.contains(SOURCE_FOLDER.substring(SOURCE_FOLDER.lastIndexOf("\\") + 1) + "LogFile.txt")) {
+				if (file.contains(SOURCE_FOLDER.substring(SOURCE_FOLDER.lastIndexOf("\\") + 1) + "LogFile.html")) {
 					Path path = Paths.get(SOURCE_FOLDER + File.separator + file);
 					Charset charset = Charset.forName("UTF-8");
 					BufferedReader reader = Files.newBufferedReader(path, charset);
